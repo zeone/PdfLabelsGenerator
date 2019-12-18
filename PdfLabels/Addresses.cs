@@ -13,7 +13,7 @@ namespace PdfLabels
             var resp = new List<string>();
             StringBuilder sb;
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 15; i++)
             {
                 // 3 row
                 sb = new StringBuilder();
@@ -46,6 +46,21 @@ namespace PdfLabels
                 sb.Append("Kyiv, LA 02139");
                 sb.Append(Environment.NewLine);
                 sb.Append("Ukraine");
+                resp.Add(sb.ToString());
+
+                // 6 row
+                sb = new StringBuilder();
+                sb.Append("6 row Name");
+                sb.Append(Environment.NewLine);
+                sb.Append("Some Company Name");
+                sb.Append(Environment.NewLine);
+                sb.Append("Some Address");
+                sb.Append(Environment.NewLine);
+                sb.Append("Kyiv, LA 02139");
+                sb.Append(Environment.NewLine);
+                sb.Append("Ukraine");
+                sb.Append(Environment.NewLine);
+                sb.Append("Extra row");
                 resp.Add(sb.ToString());
             }
 

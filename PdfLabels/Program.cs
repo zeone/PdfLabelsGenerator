@@ -37,7 +37,7 @@ namespace PdfLabels
                 ms.Close();
                 File.WriteAllBytes("test.pdf", buffer);
             }
-            Console.ReadKey();
+            // Console.ReadKey();
         }
 
 
@@ -92,11 +92,12 @@ namespace PdfLabels
             pageSize.LeftMargin = new Unit { Millimeter = 4.82 };
             pageSize.RightMargin = new Unit { Millimeter = 4.82 };
             pageSize.TopMargin = new Unit { Millimeter = 12.7 };
-             pageSize.BottomMargin = new Unit { Inch = 0 };
-
+            pageSize.BottomMargin = new Unit { Inch = 0 };
+            pageSize.PageWidth = new Unit { Millimeter = 215.9 };
+            pageSize.PageHeight = new Unit { Millimeter = 279.4 };
             _section.PageSetup = pageSize;
-            _section.PageSetup.PageWidth = new Unit { Millimeter = 216 };
-            _section.PageSetup.PageHeight = new Unit { Millimeter = 279 };
+            //  _section.PageSetup.PageWidth = _section.PageSetup.PageWidth - _section.PageSetup.LeftMargin - _section.PageSetup.RightMargin; ;
+            //_section.PageSetup.PageHeight = new Unit { Millimeter = 279 };
 
             // Create the item table
             _table = _section.AddTable();
@@ -109,21 +110,21 @@ namespace PdfLabels
             _table.Rows.LeftIndent = 0;
             _table.Rows.HeightRule = RowHeightRule.Exactly;
             _table.Rows.Height = new Unit { Millimeter = 25.4 };
-            
+
             CreateLabelColumns();
             // _table.SetEdge(0, 0, 3, 1, Edge.Box, BorderStyle.Single, 0.75, Color.Empty);
         }
 
         private static void CreateLabelColumns()
         {
-            Unit mainSize = new Unit { Inch = 2.63 };
-            Unit innSize = new Unit { Inch = 0.12 };
+            Unit mainSize = new Unit { Millimeter = 66.80 };
+            Unit innSize = new Unit { Millimeter = 3.04 };
             for (int i = 0; i < 5; i++)
             {
                 Column column = _table.AddColumn();
-                column.LeftPadding = 0;
-                column.RightPadding = 0;
-                
+                //column.LeftPadding = 0;
+                //column.RightPadding = 0;
+
                 column.Format.Alignment = ParagraphAlignment.Center;
                 column.Width = (i % 2 != 0) ? innSize : mainSize;
             }
@@ -148,7 +149,7 @@ namespace PdfLabels
                 }
                 FillRow(row, countCols - 1, addr,
                     false, ParagraphAlignment.Left,
-                    VerticalAlignment.Center, marginLeft: new Unit { Millimeter = 2 });
+                    VerticalAlignment.Top, marginLeft: new Unit { Millimeter = 2 });
             }
             //}
             //if (filter.ReportType == TransFilterType.Member)
